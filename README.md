@@ -131,7 +131,7 @@ Potential enhancements for this project:
 - Add extreme weather event prediction capabilities
 
 ## Data
-The data used in the project is from National Weather Service (NWS)
+The data used in the project is from National Weather Service (NWS).
 Link: https://www.weather.gov/
 
 ## Acknowledgments
