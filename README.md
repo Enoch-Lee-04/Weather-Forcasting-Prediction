@@ -7,7 +7,8 @@ A machine learning project for analyzing and forecasting weather patterns in Aus
 This project analyzes historical weather data for Austin, Texas from 2015 to 2025 (including some forecasted data) to:
 - Visualize temperature trends over time
 - Identify seasonal patterns in temperature data
-- Create forecasts for future temperature trends using Facebook's Prophet model
+- Create accurate forecasts using an enhanced Prophet model with multiple predictors
+- Evaluate forecast accuracy using cross-validation
 
 ## Dataset
 
@@ -16,24 +17,47 @@ The project uses weather data for Austin, Texas with the following features:
 - Maximum temperature
 - Minimum temperature
 - Average temperature
-- Precipitation
+- Precipitation (with special handling for trace amounts marked as 'T')
 
 The main dataset file is `ATX 2015-01-01 to 2025-03-09.csv`, which contains daily weather records.
 
 ## Features
 
-- **Data Visualization**: Uses Plotly Express and Seaborn to create interactive visualizations of temperature trends
-- **Time Series Analysis**: Analyzes temperature patterns by year and month
-- **Forecasting**: Implements Facebook's Prophet model to predict future temperature trends
-- **Interactive Plots**: Generates interactive plots for exploring the data and forecast results
+- **Advanced Data Preprocessing**: 
+  - Handles trace precipitation values
+  - Extracts temporal features (day of week, day of year)
+  - Performs missing value detection and imputation
+
+- **Comprehensive Data Visualization**: 
+  - Interactive temperature trend plots using Plotly
+  - Seasonal pattern visualization with Seaborn
+  - Monthly temperature distribution analysis
+  - Cross-validation performance plots
+
+- **Enhanced Forecasting Model**:
+  - Optimized Prophet configuration with:
+    - Flexible yearly seasonality (20 components)
+    - Weekly seasonality modeling
+    - Multiplicative seasonality mode
+    - Tuned changepoint and seasonality parameters
+  - Multiple predictor integration:
+    - Precipitation as a regressor
+    - Maximum and minimum temperatures as additional predictors
+
+- **Model Evaluation**:
+  - Cross-validation with configurable parameters
+  - Multiple performance metrics (MAE, RMSE, R²)
+  - Forecast uncertainty visualization
+  - Detailed component analysis
 
 ## Technologies Used
 
 - **Python**: Primary programming language
 - **Pandas & NumPy**: Data manipulation and analysis
-- **Matplotlib & Seaborn**: Static data visualization
-- **Plotly Express**: Interactive data visualization
-- **Prophet**: Time series forecasting model developed by Facebook
+- **Matplotlib & Seaborn**: Statistical visualization
+- **Plotly**: Interactive data visualization
+- **Prophet**: Advanced time series forecasting
+- **scikit-learn**: Model evaluation metrics
 
 ## Getting Started
 
@@ -41,12 +65,13 @@ The main dataset file is `ATX 2015-01-01 to 2025-03-09.csv`, which contains dail
 
 To run this project, you'll need Python installed along with the following libraries:
 ```
-pandas
-numpy
-matplotlib
-seaborn
-plotly
-prophet
+pandas>=1.3.0
+numpy>=1.20.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.3.0
+prophet>=1.0.0
+scikit-learn>=1.0.0
 ```
 
 ### Installation
@@ -69,27 +94,41 @@ Run the main script to perform the analysis and generate forecasts:
 python weather.py
 ```
 
-This will:
-1. Load and preprocess the weather data
-2. Display basic statistics and information about the dataset
-3. Generate visualizations of temperature trends
-4. Create and train a Prophet forecasting model
-5. Display forecast results with interactive plots
+The script will:
+1. Load and preprocess the weather data, including handling trace precipitation values
+2. Display comprehensive dataset statistics and information
+3. Generate interactive visualizations of temperature trends
+4. Create and train an enhanced Prophet model with multiple predictors
+5. Perform cross-validation and display performance metrics
+6. Generate detailed forecast visualizations with uncertainty bounds
 
 ## Results
 
-The project produces several visualizations:
-- Line plots showing average temperature trends over time
-- Monthly temperature patterns across different years
-- Prophet forecast plots showing predicted temperature trends with uncertainty intervals
+The project produces several sophisticated visualizations:
+- Interactive line plots showing temperature trends over time
+- Seasonal pattern analysis with yearly comparisons
+- Monthly temperature distribution boxplots
+- Cross-validation performance analysis
+- Detailed forecast plots with confidence intervals
+- Component-wise analysis of different factors affecting temperature
+
+## Model Performance
+
+The forecasting model's performance is evaluated using:
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- R² Score
+- Cross-validation metrics across different forecast horizons
 
 ## Future Improvements
 
 Potential enhancements for this project:
-- Include additional weather parameters (humidity, wind speed) in the analysis
-- Implement more advanced forecasting models for comparison
-- Add geographical visualization of weather patterns
-- Create a web interface for interactive exploration of the data and forecasts
+- Incorporate additional weather parameters (humidity, wind speed, pressure)
+- Experiment with different seasonality configurations
+- Implement ensemble forecasting methods
+- Add interactive parameter tuning capabilities
+- Create a web dashboard for real-time forecast updates
+- Add extreme weather event prediction capabilities
 
 ## License
 
@@ -98,4 +137,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgments
 
 - Weather data sourced from historical weather records for Austin, Texas
-- Facebook's Prophet team for developing the forecasting library 
+- Facebook's Prophet team for developing the forecasting library
+- The open-source community for the various Python libraries used
