@@ -130,9 +130,9 @@ Potential enhancements for this project:
 - Create a web dashboard for real-time forecast updates
 - Add extreme weather event prediction capabilities
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Data
+The data used in the project is from National Weather Service (NWS)
+Link: https://www.weather.gov/
 
 ## Acknowledgments
 
